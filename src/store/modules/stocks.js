@@ -8,8 +8,11 @@ const mutations = {
   setStocks( state, stocks ) {
     state.stocks = stocks;
   },
-  randomStocks( state ) {
-
+  randomizeStocks( state ) {
+    state.stocks.forEach(stock => {
+      // 50% for increase or decrease
+      stock.price = Math.round(stock.price * (1 + Math.random() - 0.5));
+    });
   }
 };
 
@@ -21,7 +24,7 @@ const actions = {
     commit('setStocks', stocks);
   },
   randomizeStocks : ( { commit } ) => {
-    commit('randomStocks');
+    commit('randomizeStocks');
   }
 };
 
